@@ -3,6 +3,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 @property (nonatomic, strong) NSWindow *window;
 @property (nonatomic, strong) NSImageView *imageView;
+@property (nonatomic, strong) NSTimer *timeoutTimer;
 @end
 
 @implementation AppDelegate
@@ -18,6 +19,7 @@
     NSString *url = nil;
     CGFloat x = 0, y = 0, width = 400, height = 400;
     BOOL center = NO;
+    NSTimeInterval timeout = 0;
 
     // Parse arguments
     for (int i = 1; i < args.count; i++) {
@@ -35,6 +37,8 @@
             height = [args[++i] floatValue];
         } else if ([arg isEqualToString:@"--center"]) {
             center = YES;
+        } else if ([arg isEqualToString:@"--timeout"] && i + 1 < args.count) {
+            timeout = [args[++i] doubleValue];
         }
     }
 
@@ -110,6 +114,16 @@
         self.imageView.image = image;
         NSLog(@"Image loaded successfully from: %@", url);
 
+        // Set up timeout if specified
+        if (timeout > 0) {
+            NSLog(@"Setting timeout for %.1f seconds", timeout);
+            self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout
+                                                               target:self
+                                                             selector:@selector(timeoutReached:)
+                                                             userInfo:nil
+                                                              repeats:NO];
+        }
+
         // Show window only if image loaded successfully
         [self.window makeKeyAndOrderFront:nil];
         [NSApp activateIgnoringOtherApps:YES];
@@ -124,6 +138,11 @@
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
+}
+
+- (void)timeoutReached:(NSTimer *)timer {
+    NSLog(@"Timeout reached, terminating application");
+    [NSApp terminate:nil];
 }
 
 @end
