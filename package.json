@@ -1,0 +1,12 @@
+{
+  "name": "screen-gif",
+  "version": "1.0.0",
+  "description": "Display a gif on the screen",
+  "main": "js/index.js",
+  "author": "Felix Rieseberg <felix@felixrieseberg.com>",
+  "scripts": {
+    "clean": "rm -rf bin",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "license": "MIT"
+}
