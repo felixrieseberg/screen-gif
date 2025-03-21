@@ -3,6 +3,9 @@
   "version": "1.1.0",
   "description": "Display a gif on the screen",
   "main": "js/index.js",
+  "bin": {
+    "screen-gif": "./bin/GifViewer"
+  },
   "author": "Felix Rieseberg <felix@felixrieseberg.com>",
   "scripts": {
     "clean": "rm -rf bin",
