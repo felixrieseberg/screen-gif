@@ -1,6 +1,6 @@
 {
   "name": "screen-gif",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Display a gif on the screen",
   "main": "js/index.js",
   "bin": {
