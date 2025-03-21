@@ -2,6 +2,7 @@
 
 const path = require('path');
 const { spawn } = require('child_process');
+const fs = require('fs');
 
 // Get the path to our compiled binary
 const binaryPath = path.join(__dirname, 'GifViewer');
