@@ -4,8 +4,14 @@
   "description": "Display a gif on the screen",
   "main": "js/index.js",
   "bin": {
-    "screen-gif": "./bin/GifViewer"
+    "screen-gif": "./bin/cli.js"
   },
+  "files": [
+    "bin/cli.js",
+    "js/",
+    "src/",
+    "scripts/"
+  ],
   "author": "Felix Rieseberg <felix@felixrieseberg.com>",
   "scripts": {
     "clean": "rm -rf bin",
